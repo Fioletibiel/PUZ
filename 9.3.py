@@ -1,10 +1,10 @@
 import sys
 import numpy as np
 
-
 def getch():
     getchar = input("")
     getchar = None
+
 
 # tworzenie pola o zadanych wymiarach
 X = input("Proszę podaj rozmiar X pola: ")
@@ -38,6 +38,8 @@ while(l < L): # wypełnianie pola wskazaną ilością ludzi
                 l+=1 # jeśli w rozpatrywanym obecnie miejscu pola został wylosowany i wstawiony człowiek (cyfra 1), to licznik się zwiększa i przechodzimy do kolejnego miejsca w polu; cały proces się powtarza, aż pole nie zostanie wypełnione wskazaną ilością ludzi
 print(np.matrix(pole))
 print("\n")
+
+
 # tworzenie tabeli ludzi (miejsca pola, w których są ludzie)
 tabela_wspolrzednych_ludzi = [[0 for i in range(3)] for l in range(L)]
 l=0
@@ -48,6 +50,8 @@ for y in range(Y):
             l+=1
 print(np.matrix(tabela_wspolrzednych_ludzi))
 print("\n")
+
+
 # wybór i przypisanie osób
 tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
 for l in range(L):
@@ -56,16 +60,25 @@ print(np.matrix(tabela_wyboru))
 print("\n")
 
 
+# tabela przedstawiające początkowe i końcowe współrzędne poszczególnych osób
+tabela_drogi=[[[0 for x in range(2)] for y in range(3)] for z in range(L)] # [nr osoby, nr osoby przez nia wybranej][wspolrzedne x i y osoby][wspolrzedne x i y osoby przez nia wybranej]
+for l in range(L):
+    tabela_drogi[l][0]=[l+1, tabela_wyboru[l][1]]
+    tabela_drogi[l][1]=[tabela_wspolrzednych_ludzi[l][1],tabela_wspolrzednych_ludzi[l][2]]
+    tabela_drogi[l][2]=[tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2]]
+print(tabela_drogi)
+print("\n")
 
 
 
 
-# a = []
-# for x in range(8):
-#     row = []
-#     for y in range(8):
-#         row.append(0)
-#     a.append(row)
+
+
+
+
+
+
+
 
 getch()
 sys.exit(0)
