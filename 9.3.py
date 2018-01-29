@@ -40,6 +40,14 @@ print(np.matrix(pole))
 print("\n")
 
 
+# wybór i przypisanie osób
+tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
+for l in range(L):
+    tabela_wyboru[l]=[l+1,np.random.randint(0,L)+1]
+print(np.matrix(tabela_wyboru))
+print("\n")
+
+
 # tworzenie tabeli ludzi (miejsca pola, w których są ludzie)
 tabela_wspolrzednych_ludzi = [[0 for i in range(3)] for l in range(L)]
 l=0
@@ -49,14 +57,6 @@ for y in range(Y):
             tabela_wspolrzednych_ludzi[l]=[l+1,x+1,y+1]
             l+=1
 print(np.matrix(tabela_wspolrzednych_ludzi))
-print("\n")
-
-
-# wybór i przypisanie osób
-tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
-for l in range(L):
-    tabela_wyboru[l]=[l+1,np.random.randint(0,L)+1]
-print(np.matrix(tabela_wyboru))
 print("\n")
 
 
