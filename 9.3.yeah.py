@@ -1,10 +1,4 @@
-import sys
 import numpy as np
-
-def getch():
-    getchar = input("")
-    getchar = None
-
 
 # tworzenie pola o zadanych wymiarach
 X = input("Proszę podaj rozmiar X pola: ")
@@ -73,12 +67,3 @@ for l in range(L):
 print(tabela_drogi)
 print("\n")
 
-# teraz trzeba zapętlić to, żeby proces był dynamiczny, zrobię to w nowym pliku...
-
-
-
-
-
-
-getch()
-sys.exit(0)
