@@ -60,17 +60,26 @@ print(np.matrix(tabela_wyboru))
 print("\n")
 
 
-# tabela przedstawiające początkowe i końcowe współrzędne poszczególnych osób
-tabela_drogi=[[[0 for x in range(2)] for y in range(3)] for z in range(L)] # [nr osoby, nr osoby przez nia wybranej][wspolrzedne x i y osoby][wspolrzedne x i y osoby przez nia wybranej]
+# tabela przedstawiające początkowe współrzędne poszczególnych osób i współrzędne ich celów
+tabela_drogi_1=[[[0 for x in range(2)] for y in range(3)] for z in range(L)] # [nr osoby, nr osoby przez nia wybranej][wspolrzedne x i y osoby][wspolrzedne x i y osoby przez nia wybranej]
 for l in range(L):
-    tabela_drogi[l][0]=[l+1, tabela_wyboru[l][1]]
-    tabela_drogi[l][1]=[tabela_wspolrzednych_ludzi[l][1],tabela_wspolrzednych_ludzi[l][2]]
-    tabela_drogi[l][2]=[tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2]]
-print(tabela_drogi)
+    tabela_drogi_1[l][0]=[l+1, tabela_wyboru[l][1]]
+    tabela_drogi_1[l][1]=[tabela_wspolrzednych_ludzi[l][1], tabela_wspolrzednych_ludzi[l][2]]
+    tabela_drogi_1[l][2]=[tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1], tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2]]
+print(tabela_drogi_1)
 print("\n")
 
 
-
+# tabela przedstawiająca końcowe współrzędne posczególnych osób, w miejscu najbliżej celu
+tabela_drogi_2 = [[0 for i in range(3)] for l in range(L)]
+tabela_wektorow = [[0 for i in range(3)] for l in range(L)]
+for l in range(L):
+    tabela_drogi_2[l][0] = l+1
+    tabela_wektorow[l][0] = l+1
+    tabela_wektorow[l][1] = [tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1] - 1 - tabela_wspolrzednych_ludzi[l][1]] # przesunięcie w osi X
+    tabela_wektorow[l][2] = [tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2] - 1 - tabela_wspolrzednych_ludzi[l][2]] # przesunięcie w osi Y
+    tabela_drogi_2[l][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1] - 1
+    tabela_drogi_2[l][2] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2] - 1
 
 
 
