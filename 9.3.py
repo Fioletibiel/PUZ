@@ -6,16 +6,17 @@ def getch():
     getchar = input("")
     getchar = None
 
-# tworzenie_pola
+# tworzenie pola o zadanych wymiarach
 X = input("Proszę podaj rozmiar X pola: ")
-X = int (X)
+X = int(X)
 Y = input("oraz Y: ")
 Y = int(Y)
 L = input("A teraz podaj ilość ludzi: ")
-L = int (L)
+L = int(L)
 print("\n")
 l=0
 pole = [[0 for x in range(X)] for y in range(Y)] # tworzenie pola o rozmiarach [X;Y] narazie wypełnionego zerami (pustymi miejscami)
+# losowe wypełnianie pola zadaną liczbą ludzi
 # # pole = np.random.randint(0, 1, size=(Y, X))
 # while(l < L): # wypełnianie pola wskazaną ilością ludzi
 #     print("while " + str(l)) # wyświetla informację ile razy została wykonana pętla (fyi)
@@ -31,22 +32,29 @@ while(l < L): # wypełnianie pola wskazaną ilością ludzi
     x = np.random.randint(0,X) # losujemy miejsce (X)
     y = np.random.randint(0,Y) # losujemy miejsce (Y)
     if(l<L): # jeśli w polu nadal jest mniejsza ilość ludzi, niż wskazana, to wykonujemy poniższą instrukcję
-        if(pole[x][y]!=1): # jeżeli w obecnie rozpatrywanym miejscu pola nie ma człowieka (cyfra 1, w przeciwieństwie do 0, które reprezentuje puste miejsce), to wykonujemy poniższa instrukcję
-            pole[x][y] = np.random.randint(0,2) # losujemy dla danego miejsca pola 0 albo 1, żeby rozmieścić ludzi losowo, a nie musieć tego robić ręcznie
-            if(pole[x][y]==1):
+        if(pole[y][x]!=1): # jeżeli w obecnie rozpatrywanym miejscu pola nie ma człowieka (cyfra 1, w przeciwieństwie do 0, które reprezentuje puste miejsce), to wykonujemy poniższa instrukcję
+            pole[y][x] = np.random.randint(0,2) # losujemy dla danego miejsca pola 0 albo 1, żeby rozmieścić ludzi losowo, a nie musieć tego robić ręcznie
+            if(pole[y][x]==1):
                 l+=1 # jeśli w rozpatrywanym obecnie miejscu pola został wylosowany i wstawiony człowiek (cyfra 1), to licznik się zwiększa i przechodzimy do kolejnego miejsca w polu; cały proces się powtarza, aż pole nie zostanie wypełnione wskazaną ilością ludzi
 print(np.matrix(pole))
+print("\n")
+# tworzenie tabeli ludzi (miejsca pola, w których są ludzie)
+tabela_ludzi = [[0 for i in range(2)] for l in range(L)]
+l=0
+for y in range(Y):
+    for x in range(X):
+        if(pole[y][x]==1):
+            tabela_ludzi[l]=[x+1,y+1]
+            l+=1
+print(np.matrix(tabela_ludzi))
+print("\n")
+# wybór i przypisanie osób
 
 
 
 
-# tabela_ludzi=[]
-# for x in range(X):
-#     for y in range(Y):
-#         if(pole[x][y]==1):
-#             tabela_ludzi.append(x,y)
 
-#print(tabela_ludzi)
+
 
 # a = []
 # for x in range(8):
