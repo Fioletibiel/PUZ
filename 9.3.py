@@ -12,21 +12,29 @@ X = int (X)
 Y = input("oraz Y: ")
 Y = int(Y)
 L = input("A teraz podaj ilość ludzi: ")
-L = int (Y)
+L = int (L)
 print("\n")
 l=0
 pole = [[0 for x in range(X)] for y in range(Y)] # tworzenie pola o rozmiarach [X;Y] narazie wypełnionego zerami (pustymi miejscami)
-# pole = np.random.randint(0, 1, size=(Y, X))
+# # pole = np.random.randint(0, 1, size=(Y, X))
+# while(l < L): # wypełnianie pola wskazaną ilością ludzi
+#     print("while " + str(l)) # wyświetla informację ile razy została wykonana pętla (fyi)
+#     for x in range(X): #
+#         for y in range(Y): # przemiatamy wszystkie miejsca pola
+#             if(l<L): # jeśli w polu nadal jest mniejsza ilość ludzi, niż wskazana, to wykonujemy poniższą instrukcję
+#                 if(pole[x][y]!=1): # jeżeli w obecnie rozpatrywanym miejscu pola nie ma człowieka (cyfra 1, w przeciwieństwie do 0, które reprezentuje puste miejsce), to wykonujemy poniższa instrukcję
+#                     pole[x][y]=np.random.randint(0,2) # losujemy dla danego miejsca pola 0 albo 1, żeby rozmieścić ludzi losowo, a nie musieć tego robić ręcznie
+#                     if(pole[x][y]==1):
+#                         l+=1 # jeśli w rozpatrywanym obecnie miejscu pola został wylosowany i wstawiony człowiek (cyfra 1), to licznik się zwiększa i przechodzimy do kolejnego miejsca w polu; cały proces się powtarza, aż pole nie zostanie wypełnione wskazaną ilością ludzi
+#                         print(l)
 while(l < L): # wypełnianie pola wskazaną ilością ludzi
-    print("while " + str(l)) # wyświetla informację ile razy została wykonana pętla (fyi)
-    for x in range(X): #
-        for y in range(Y): # przemiatamy wszystkie miejsca pola
-            if(l<L): # jeśli w polu nadal jest mniejsza ilość ludzi, niż wskazana to wykonujemy poniższą instrukcję
-                if(pole[x][y]!=1): # jeżeli w obecnie rozpatrywanym miejscu pola nie ma człowieka (cyfra 1, w przeciwieństwie do 0, które reprezentuje puste miejsce), to wykonujemy poniższa instrukcję
-                    pole[x][y]=np.random.randint(0,2) # losujemy dla danego miejsca pola 0 albo 1, żeby rozmieścić ludzi losowo, a nie musieć tego robić ręcznie
-                    if(pole[x][y]==1):
-                        l+=1 # jeśli w rozpatrywanym obecnie miejscu pola został wylosowany i wstawiony człowiek (cyfra 1), to licznik się zwiększa i przechodzimy do kolejnego miejsca w polu; cały proces się powtarza, aż pole nie zostanie wypełnione wskazaną ilością ludzi
-                        print(l)
+    x = np.random.randint(0,X) # losujemy miejsce (X)
+    y = np.random.randint(0,Y) # losujemy miejsce (Y)
+    if(l<L): # jeśli w polu nadal jest mniejsza ilość ludzi, niż wskazana, to wykonujemy poniższą instrukcję
+        if(pole[x][y]!=1): # jeżeli w obecnie rozpatrywanym miejscu pola nie ma człowieka (cyfra 1, w przeciwieństwie do 0, które reprezentuje puste miejsce), to wykonujemy poniższa instrukcję
+            pole[x][y] = np.random.randint(0,2) # losujemy dla danego miejsca pola 0 albo 1, żeby rozmieścić ludzi losowo, a nie musieć tego robić ręcznie
+            if(pole[x][y]==1):
+                l+=1 # jeśli w rozpatrywanym obecnie miejscu pola został wylosowany i wstawiony człowiek (cyfra 1), to licznik się zwiększa i przechodzimy do kolejnego miejsca w polu; cały proces się powtarza, aż pole nie zostanie wypełnione wskazaną ilością ludzi
 print(np.matrix(pole))
 
 
