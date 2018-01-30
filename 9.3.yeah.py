@@ -75,15 +75,18 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
             if(tabela_wektorow_bufor[lo][2]<0):
                 tabela_wektorow_bufor[lo][2] = tabela_wektorow_bufor[lo][2] * (-1)
         ilosc_okresow = np.min(tabela_wektorow_bufor)
+        if (ilosc_okresow==0):
+            ilosc_okresow = 1
         tabela_ruchu[l][1] = tabela_wspolrzednych_ludzi[l][1] + tabela_wektorow[l][1]/ilosc_okresow
         tabela_ruchu[l][2] = tabela_wspolrzednych_ludzi[l][2] + tabela_wektorow[l][2]/ilosc_okresow
         float2int(tabela_ruchu)
         tabela_wspolrzednych_ludzi[l][1] = tabela_ruchu[l][1]
         tabela_wspolrzednych_ludzi[l][2] = tabela_ruchu[l][2]
+        float2int(tabela_wspolrzednych_ludzi)
 print("Tabela współrzędnych położenia ludzi:")
 print(np.matrix(tabela_wspolrzednych_ludzi))
 print("\n")
-float2int(tabela_wspolrzednych_ludzi)
+
 # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
 pole = [[0 for x in range(X)] for y in range(Y)]
 for l in range(L):
