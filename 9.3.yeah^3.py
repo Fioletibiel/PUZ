@@ -54,18 +54,34 @@ for y in range(Y):
             tabela_wspolrzednych_ludzi[l]=[l+1,x+1,y+1]
             l+=1
 
+#stworzenie tabeli rozmiesczenia ludzi wybranych
+tabela_wspolrzednych_ludzi_wybranych = [[0 for i in range(3)] for l in range(L)]
+for l in range(L):
+    tabela_wspolrzednych_ludzi_wybranych[l]=[tabela_wyboru[l][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2]]
+
 # symulacja ruchu ludzi
 tabela_wektorow = [[0 for i in range(2)] for l in range(L)]
-tabela_ruchu = [[0 for i in range(2)] for l in range(L)]
 k=0
-while(tabela_wspolrzednych_ludzi!=tabela_ruchu):
+wszyscy_na_miejscu = [[False] for l in range(L)]
+while(wszyscy_na_miejscu!=True):
     for i in range(L):
-        tabela_wektorow[i][0] = tabela_wspolrzednych_ludzi[tabela_wyboru[i][1]-1][1] - 1 - (tabela_wspolrzednych_ludzi[i][1] - 1) - 1 # przesunięcie w osi X
-        tabela_wektorow[i][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[i][1]-1][2] - 1 - (tabela_wspolrzednych_ludzi[i][2] - 1) - 1 # przesunięcie w osi Y
-        tabela_ruchu[i][0] = tabela_wspolrzednych_ludzi[i][1] + tabela_wektorow[i][0]
-        tabela_ruchu[i][1] = tabela_wspolrzednych_ludzi[i][2] + tabela_wektorow[i][1]
-        tabela_wspolrzednych_ludzi[i][1] = tabela_ruchu[i][0]
-        tabela_wspolrzednych_ludzi[i][2] = tabela_ruchu[i][1]
+        tabela_wektorow[i][0] = tabela_wspolrzednych_ludzi_wybranych[i][1] - 1 - (tabela_wspolrzednych_ludzi[i][1] - 1) # przesunięcie w osi X
+        tabela_wektorow[i][1] = tabela_wspolrzednych_ludzi_wybranych[i][2] - 1 - (tabela_wspolrzednych_ludzi[i][2] - 1) # przesunięcie w osi Y
+        if(tabela_wspolrzednych_ludzi[tabela_wyboru[i][1]-1][1] > tabela_wspolrzednych_ludzi[i][1]):
+            z1 = -1
+        else:
+            z1 = 1
+        if(tabela_wspolrzednych_ludzi[tabela_wyboru[i][1]-1][2] > tabela_wspolrzednych_ludzi[i][2]):
+            z2 = -1
+        else:
+            z2 = 1
+        if(tabela_wspolrzednych_ludzi[i][1]!=tabela_wspolrzednych_ludzi_wybranych[i][1]+z1 or tabela_wspolrzednych_ludzi[i][2]!=tabela_wspolrzednych_ludzi_wybranych[i][2]+z2):
+            tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + tabela_wektorow[i][0] + z1
+            tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2] + tabela_wektorow[i][1] + z2
+            wszyscy_na_miejscu[i]=False
+        else:
+            wszyscy_na_miejscu[i]=True
+
     # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
     pole = [['' for x in range(X)] for y in range(Y)]
     for y in range(Y):
@@ -74,12 +90,16 @@ while(tabela_wspolrzednych_ludzi!=tabela_ruchu):
                 if (tabela_wspolrzednych_ludzi[lp][1] - 1 == x):
                     if (tabela_wspolrzednych_ludzi[lp][2] - 1 == y):
                         pole[y][x] = '©'
-    odswiez_ekran()
-    poczekaj(2)
+    # odswiez_ekran()
+    # poczekaj(2)
     k += 1
-    print("Pole po przetasowaniu nr.:" + str(k))
-    print(np.matrix(pole))
-    print("\n")
-    if (k == 5):
+    # print("Pole po przetasowaniu nr.:" + str(k))
+    # print(np.matrix(pole))
+    # print("\n")
+    if (k == 100):
+        print("Ta operacja trwa zbyt długo i została przerwana.")
         break
+print("Pole po przetasowaniu:")
+print(np.matrix(pole))
+print("\n")
 input("Wciśnij cokolwiek, aby zakończyć program.")
