@@ -1,8 +1,15 @@
 import numpy as np
 import subprocess
+import os
 
 def odswiez_ekran():
     subprocess.call("cls", shell=True)
+
+def poczekaj(czas):
+    cz=0
+    while(cz<czas):
+        os.system('cls')
+        cz+=1
 
 def int2float(tabela):
     for li in range(L):
@@ -88,7 +95,6 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
         tabela_wspolrzednych_ludzi[l][2] = tabela_ruchu[l][2]
         float2int(tabela_wspolrzednych_ludzi)
         k+=1
-        odswiez_ekran()
         # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
         pole = [[0 for x in range(X)] for y in range(Y)]
         for lp in range(L):
@@ -97,6 +103,8 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
                     if (x == tabela_wspolrzednych_ludzi[lp][1] - 1):
                         if (y == tabela_wspolrzednych_ludzi[lp][2] - 1):
                             pole[y][x] = 1
+        odswiez_ekran()
+        poczekaj(5)
         print("Pole po przetasowaniu nr.:" + str(k))
         print(np.matrix(pole))
         print("\n")
