@@ -152,4 +152,5 @@ print("\n")
 
 input("Wciśnij cokolwiek, aby zakończyć program.")
 
+
 #trzeba jednak dodać ruch czasowy, co okres
