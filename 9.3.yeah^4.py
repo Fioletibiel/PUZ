@@ -116,9 +116,13 @@ while(wszyscy_na_miejscu!=True):
         if (ilosc_okresow == 0):
             ilosc_okresow = 1
 
-        if(tabela_wspolrzednych_ludzi[i][1]!=tabela_wspolrzednych_ludzi_wybranych[i][1]+z1 or tabela_wspolrzednych_ludzi[i][2]!=tabela_wspolrzednych_ludzi_wybranych[i][2]+z2):
-            tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + (tabela_wektorow[i][0] + z1)/ilosc_okresow
-            tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2] + (tabela_wektorow[i][1] + z2)/ilosc_okresow
+        if (tabela_wspolrzednych_ludzi[i][1] != tabela_wspolrzednych_ludzi_wybranych[i][1]+z1):
+            tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + (tabela_wektorow[i][0] + z1) /ilosc_okresow
+            wszyscy_na_miejscu[i] = False
+        else:
+            wszyscy_na_miejscu[i] = True
+        if (tabela_wspolrzednych_ludzi[i][2] != tabela_wspolrzednych_ludzi_wybranych[i][2]+z2):
+            tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2] + (tabela_wektorow[i][1] + z2) /ilosc_okresow
             wszyscy_na_miejscu[i]=False
         else:
             wszyscy_na_miejscu[i]=True
@@ -151,6 +155,3 @@ print(np.matrix(tabela_wspolrzednych_ludzi))
 print("\n")
 
 input("Wciśnij cokolwiek, aby zakończyć program.")
-
-
-#trzeba jednak dodać ruch czasowy, co okres
