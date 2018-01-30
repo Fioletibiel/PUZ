@@ -46,7 +46,9 @@ tabela_wspolrzednych_ludzi = [[0 for i in range(3)] for l in range(L)]
 tabela_celu = [[0 for i in range(3)] for l in range(L)]
 tabela_wektorow = [[0 for i in range(3)] for l in range(L)]
 tabela_ruchu = [[0 for i in range(3)] for l in range(L)]
-tabela_ruchu = float(tabela_ruchu)
+for l in range(L):
+    for i in range(3):
+        tabela_ruchu[l][i]=float(tabela_ruchu[l][i])
 while(tabela_wspolrzednych_ludzi!=tabela_celu):
     for l in range(L):
         tabela_celu[l][0], tabela_wektorow[l][0], tabela_ruchu[l][0] = l+1
@@ -70,5 +72,4 @@ for l in range(L):
                 pole[y][x] = 1
 print("Pole po przetasowaniu:")
 print(np.matrix(pole))
-
 print("\n")
