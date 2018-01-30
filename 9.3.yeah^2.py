@@ -41,15 +41,19 @@ print("\n")
 
 
 # losowe wypełnianie pola zadaną liczbą ludzi
-pole = [[0 for x in range(X)] for y in range(Y)]
+pole = [['' for x in range(X)] for y in range(Y)]
 l=0
 while(l < L):
     x = np.random.randint(0,X)
     y = np.random.randint(0,Y)
     if(l<L):
-        if(pole[y][x]!=1):
-            pole[y][x] = np.random.randint(0,2)
-            if(pole[y][x]==1):
+        if(pole[y][x]!='1'):
+            pole[y][x] = str(np.random.randint(0,2))
+            if(pole[y][x]=='0'):
+                pole[y][x]=''
+            else:
+                pole[y][x]='©'
+            if(pole[y][x]=='©'):
                 l+=1
 print("Pole przed przetasowaniem:")
 print(np.matrix(pole))
@@ -75,8 +79,8 @@ k=0
 while(tabela_wspolrzednych_ludzi!=tabela_celu):
     for l in range(L):
         # tabela_celu[l][0], tabela_wektorow[l][0], tabela_ruchu[l][0] = l+1
-        tabela_wektorow[l][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1] - 1 - (tabela_wspolrzednych_ludzi[l][1] - 1) # przesunięcie w osi X
-        tabela_wektorow[l][2] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2] - 1 - (tabela_wspolrzednych_ludzi[l][2] - 1) # przesunięcie w osi Y
+        tabela_wektorow[l][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1] - 1 - (tabela_wspolrzednych_ludzi[l][1] - 1) - 1 # przesunięcie w osi X
+        tabela_wektorow[l][2] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2] - 1 - (tabela_wspolrzednych_ludzi[l][2] - 1) - 1 # przesunięcie w osi Y
         tabela_celu[l][1] = tabela_wspolrzednych_ludzi[l][1] + tabela_wektorow[l][1]
         tabela_celu[l][2] = tabela_wspolrzednych_ludzi[l][2] + tabela_wektorow[l][2]
         tabela_wektorow_bufor = tabela_wektorow
@@ -96,15 +100,16 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
         float2int(tabela_wspolrzednych_ludzi)
         k+=1
         # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
-        pole = [[0 for x in range(X)] for y in range(Y)]
-        for lp in range(L):
-            for y in range(Y):
-                for x in range(X):
-                    if (x == tabela_wspolrzednych_ludzi[lp][1] - 1):
-                        if (y == tabela_wspolrzednych_ludzi[lp][2] - 1):
-                            pole[y][x] = 1
+        pole = [['' for x in range(X)] for y in range(Y)]
+        for y in range(Y):
+            for x in range(X):
+                for lp in range(L):
+                    if (tabela_wspolrzednych_ludzi[lp][1] - 1 == x):
+                        if (tabela_wspolrzednych_ludzi[lp][2] - 1 == y):
+                            pole[y][x] = '©'
         odswiez_ekran()
-        poczekaj(5)
+        poczekaj(0)
         print("Pole po przetasowaniu nr.:" + str(k))
         print(np.matrix(pole))
         print("\n")
+        input("Wciśnij cokolwiek, aby zakończyć program.")
