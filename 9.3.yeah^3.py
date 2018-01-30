@@ -96,7 +96,7 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
         tabela_wspolrzednych_ludzi[l][1] = tabela_ruchu[l][1]
         tabela_wspolrzednych_ludzi[l][2] = tabela_ruchu[l][2]
         float2int(tabela_wspolrzednych_ludzi)
-        k+=1
+
         # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
         pole = [['' for x in range(X)] for y in range(Y)]
         for y in range(Y):
@@ -105,9 +105,12 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
                     if (tabela_wspolrzednych_ludzi[lp][1] - 1 == x):
                         if (tabela_wspolrzednych_ludzi[lp][2] - 1 == y):
                             pole[y][x] = '©'
-        odswiez_ekran()
-        poczekaj(0)
-        print("Pole po przetasowaniu nr.:" + str(k))
-        print(np.matrix(pole))
-        print("\n")
-        input("Wciśnij cokolwiek, aby zakończyć program.")
+    odswiez_ekran()
+    poczekaj(2)
+    print("Pole po przetasowaniu nr.:" + str(k))
+    print(np.matrix(pole))
+    print("\n")
+    k += 1
+    if (k == 5):
+        break
+input("Wciśnij cokolwiek, aby zakończyć program.")
