@@ -28,6 +28,7 @@ while(l < L):
             pole[y][x] = np.random.randint(0,2)
             if(pole[y][x]==1):
                 l+=1
+print("Pole przed przetasowaniem:")
 print(np.matrix(pole))
 print("\n")
 
@@ -61,3 +62,12 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
         tabela_wspolrzednych_ludzi[l][2] = tabela_ruchu[l][2]
 
 # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
+pole = [[0 for x in range(X)] for y in range(Y)]
+for l in range(L):
+    for y in range(Y):
+        for x in range(X):
+            if (x==tabela_wspolrzednych_ludzi[l][1]-1 & y==tabela_wspolrzednych_ludzi[l][2]-1):
+                pole[y][x] = 1
+print("Pole po przetasowaniu:")
+print(np.matrix(pole))
+print("\n")
