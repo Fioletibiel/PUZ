@@ -8,22 +8,6 @@ def poczekaj(czas):
     while(cz<czas):
         os.system('cls')
         cz+=1
-def int2float_2(tabela):
-    for li in range(L):
-        for i in range(2):
-            tabela[li][i] = float(tabela[li][i])
-def int2float_3(tabela):
-    for li in range(L):
-        for i in range(3):
-            tabela[li][i] = float(tabela[li][i])
-def float2int_2(tabela):
-    for li in range(L):
-        for i in range(2):
-            tabela[li][i] = float(tabela[li][i])
-def float2int_3(tabela):
-    for li in range(L):
-        for i in range(3):
-            tabela[li][i] = float(tabela[li][i])
 
 # tworzenie pola o zadanych wymiarach
 X = input("Proszę podaj rozmiar X pola: ")
@@ -106,28 +90,21 @@ while(wszyscy_na_miejscu!=True):
         else:
             z2 = 1
 
-        tabela_wektorow_bufor = tabela_wektorow
-        for lo in range(L):
-            if(tabela_wektorow_bufor[lo][0]<0):
-                tabela_wektorow_bufor[lo][0]=tabela_wektorow_bufor[lo][0]*(-1)
-            if(tabela_wektorow_bufor[lo][1]<0):
-                tabela_wektorow_bufor[lo][1] = tabela_wektorow_bufor[lo][1]*(-1)
-        ilosc_okresow = np.min(tabela_wektorow_bufor)
-        if (ilosc_okresow == 0):
-            ilosc_okresow = 1
-
+        # potuszanie się o jedno miejsce na turę
         if (tabela_wspolrzednych_ludzi[i][1] != tabela_wspolrzednych_ludzi_wybranych[i][1]+z1):
-            tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + (tabela_wektorow[i][0] + z1) /ilosc_okresow
             wszyscy_na_miejscu[i] = False
+            if((tabela_wektorow[i][0] + z1)>=1):
+                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] - z1
         else:
             wszyscy_na_miejscu[i] = True
+
         if (tabela_wspolrzednych_ludzi[i][2] != tabela_wspolrzednych_ludzi_wybranych[i][2]+z2):
-            tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2] + (tabela_wektorow[i][1] + z2) /ilosc_okresow
-            wszyscy_na_miejscu[i]=False
+            wszyscy_na_miejscu[i] = False
+            if((tabela_wektorow[i][1] + z2)>=1):
+                tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2] - z2
         else:
             wszyscy_na_miejscu[i]=True
 
-    # tabela_wspolrzednych_ludzi = float2int_3(tabela_wspolrzednych_ludzi)
     # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
     pole = [['' for x in range(X)] for y in range(Y)]
     for y in range(Y):
