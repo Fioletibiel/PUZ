@@ -21,7 +21,10 @@ print("\n")
 # wybór i przypisanie osób
 tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
 for l in range(L):
-    tabela_wyboru[l]=[l+1,np.random.randint(0,L)+1]
+    if True:
+        tabela_wyboru[l]=[l+1,np.random.randint(0,L)+1]
+        if(tabela_wyboru[l][1]!=tabela_wyboru[l][0]):
+            break
 print("Tabela wyboru:")
 print(np.matrix(tabela_wyboru))
 print("\n")
@@ -57,6 +60,7 @@ tabela_wektorow = [[0 for i in range(3)] for l in range(L)]
 tabela_ruchu = [[0 for i in range(3)] for l in range(L)]
 int2float(tabela_ruchu)
 int2float(tabela_wektorow)
+int2float(tabela_wspolrzednych_ludzi)
 while(tabela_wspolrzednych_ludzi!=tabela_celu):
     for l in range(L):
         # tabela_celu[l][0], tabela_wektorow[l][0], tabela_ruchu[l][0] = l+1
@@ -79,7 +83,7 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
 print("Tabela współrzędnych położenia ludzi:")
 print(np.matrix(tabela_wspolrzednych_ludzi))
 print("\n")
-
+float2int(tabela_wspolrzednych_ludzi)
 # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
 pole = [[0 for x in range(X)] for y in range(Y)]
 for l in range(L):
