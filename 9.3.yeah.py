@@ -42,26 +42,36 @@ for y in range(Y):
             l+=1
 
 # symulacja ruchu ludzi
-tabela_wspolrzednych_ludzi = [[0 for i in range(3)] for l in range(L)]
 tabela_celu = [[0 for i in range(3)] for l in range(L)]
 tabela_wektorow = [[0 for i in range(3)] for l in range(L)]
 tabela_ruchu = [[0 for i in range(3)] for l in range(L)]
-for l in range(L):
+for li in range(L):
     for i in range(3):
-        tabela_ruchu[l][i]=float(tabela_ruchu[l][i])
+        tabela_ruchu[li][i]=float(tabela_ruchu[li][i])
 while(tabela_wspolrzednych_ludzi!=tabela_celu):
     for l in range(L):
-        tabela_celu[l][0], tabela_wektorow[l][0], tabela_ruchu[l][0] = l+1
-        tabela_wektorow[l][1] = [tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1] - 1 - (tabela_wspolrzednych_ludzi[l][1] - 1)] # przesunięcie w osi X
-        tabela_wektorow[l][2] = [tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2] - 1 - (tabela_wspolrzednych_ludzi[l][2] - 1)] # przesunięcie w osi Y
+        # tabela_celu[l][0], tabela_wektorow[l][0], tabela_ruchu[l][0] = l+1
+        tabela_wektorow[l][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1] - 1 - (tabela_wspolrzednych_ludzi[l][1] - 1) # przesunięcie w osi X
+        tabela_wektorow[l][2] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2] - 1 - (tabela_wspolrzednych_ludzi[l][2] - 1) # przesunięcie w osi Y
         tabela_celu[l][1] = tabela_wspolrzednych_ludzi[l][1] + tabela_wektorow[l][1]
         tabela_celu[l][2] = tabela_wspolrzednych_ludzi[l][2] + tabela_wektorow[l][2]
-        ilosc_okresow = np.min(abs(tabela_wektorow))
-        tabela_ruchu[l][1] = tabela_wspolrzednych_ludzi[l][1] + tabela_wektorow[l][1]/ilosc_okresow
-        tabela_ruchu[l][2] = tabela_wspolrzednych_ludzi[l][2] + tabela_wektorow[l][2]/ilosc_okresow
-        tabela_ruchu=int(tabela_ruchu)
+        tabela_wektorow_bufor = tabela_wektorow
+        for lo in range(L):
+            if(tabela_wektorow_bufor[lo][1]<0):
+                tabela_wektorow_bufor[lo][1]=tabela_wektorow_bufor[lo][1]*(-1)
+            if(tabela_wektorow_bufor[lo][2]<0):
+                tabela_wektorow_bufor[lo][2] = tabela_wektorow_bufor[lo][2] * (-1)
+        ilosc_okresow = np.min(tabela_wektorow_bufor)
+        tabela_ruchu[l][1] = tabela_wspolrzednych_ludzi[l][1] + tabela_wektorow[l][1]#/ilosc_okresow
+        tabela_ruchu[l][2] = tabela_wspolrzednych_ludzi[l][2] + tabela_wektorow[l][2]#/ilosc_okresow
+        for li in range(L):
+            for i in range(3):
+                tabela_ruchu[li][i] = int(tabela_ruchu[li][i])
         tabela_wspolrzednych_ludzi[l][1] = tabela_ruchu[l][1]
         tabela_wspolrzednych_ludzi[l][2] = tabela_ruchu[l][2]
+print("Tabela współrzędnych położenia ludzi:")
+print(np.matrix(tabela_wspolrzednych_ludzi))
+print("\n")
 
 # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
 pole = [[0 for x in range(X)] for y in range(Y)]
