@@ -1,16 +1,13 @@
 import numpy as np
 import subprocess
 import os
-
 def odswiez_ekran():
     subprocess.call("cls", shell=True)
-
 def poczekaj(czas):
     cz=0
     while(cz<czas):
         os.system('cls')
         cz+=1
-
 def int2float(tabela):
     for li in range(L):
         for i in range(3):
@@ -39,22 +36,19 @@ print("Tabela wyboru:")
 print(np.matrix(tabela_wyboru))
 print("\n")
 
-
 # losowe wypełnianie pola zadaną liczbą ludzi
 pole = [['' for x in range(X)] for y in range(Y)]
 l=0
 while(l < L):
     x = np.random.randint(0,X)
     y = np.random.randint(0,Y)
-    if(l<L):
-        if(pole[y][x]!='1'):
-            pole[y][x] = str(np.random.randint(0,2))
-            if(pole[y][x]=='0'):
-                pole[y][x]=''
-            else:
-                pole[y][x]='©'
-            if(pole[y][x]=='©'):
-                l+=1
+    if(pole[y][x]!='©'):
+        pole[y][x] = str(np.random.randint(0,2))
+        if(pole[y][x]=='0'):
+            pole[y][x]=''
+        else:
+            pole[y][x]='©'
+            l+=1
 print("Pole przed przetasowaniem:")
 print(np.matrix(pole))
 print("\n")
@@ -64,9 +58,12 @@ tabela_wspolrzednych_ludzi = [[0 for i in range(3)] for l in range(L)]
 l=0
 for y in range(Y):
     for x in range(X):
-        if(pole[y][x]==1):
+        if(pole[y][x]=='©'):
             tabela_wspolrzednych_ludzi[l]=[l+1,x+1,y+1]
             l+=1
+print("Tabela współrzędnych ludzi:")
+print(np.matrix(tabela_wspolrzednych_ludzi))
+print("\n")
 
 # symulacja ruchu ludzi
 tabela_celu = [[0 for i in range(3)] for l in range(L)]
@@ -77,6 +74,7 @@ int2float(tabela_wektorow)
 int2float(tabela_wspolrzednych_ludzi)
 k=0
 while(tabela_wspolrzednych_ludzi!=tabela_celu):
+    print("TUTAJ!")
     for l in range(L):
         # tabela_celu[l][0], tabela_wektorow[l][0], tabela_ruchu[l][0] = l+1
         tabela_wektorow[l][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1] - 1 - (tabela_wspolrzednych_ludzi[l][1] - 1) - 1 # przesunięcie w osi X
