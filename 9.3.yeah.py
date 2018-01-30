@@ -70,4 +70,5 @@ for l in range(L):
                 pole[y][x] = 1
 print("Pole po przetasowaniu:")
 print(np.matrix(pole))
+
 print("\n")
