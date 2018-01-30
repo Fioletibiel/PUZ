@@ -1,5 +1,14 @@
 import numpy as np
 
+def int2float(tabela):
+    for li in range(L):
+        for i in range(3):
+            tabela[li][i] = float(tabela[li][i])
+def float2int(tabela):
+    for li in range(L):
+        for i in range(3):
+            tabela[li][i] = float(tabela[li][i])
+
 # tworzenie pola o zadanych wymiarach
 X = input("Proszę podaj rozmiar X pola: ")
 X = int(X)
@@ -13,6 +22,7 @@ print("\n")
 tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
 for l in range(L):
     tabela_wyboru[l]=[l+1,np.random.randint(0,L)+1]
+print("Tabela wyboru:")
 print(np.matrix(tabela_wyboru))
 print("\n")
 
@@ -45,9 +55,8 @@ for y in range(Y):
 tabela_celu = [[0 for i in range(3)] for l in range(L)]
 tabela_wektorow = [[0 for i in range(3)] for l in range(L)]
 tabela_ruchu = [[0 for i in range(3)] for l in range(L)]
-for li in range(L):
-    for i in range(3):
-        tabela_ruchu[li][i]=float(tabela_ruchu[li][i])
+int2float(tabela_ruchu)
+int2float(tabela_wektorow)
 while(tabela_wspolrzednych_ludzi!=tabela_celu):
     for l in range(L):
         # tabela_celu[l][0], tabela_wektorow[l][0], tabela_ruchu[l][0] = l+1
@@ -62,11 +71,9 @@ while(tabela_wspolrzednych_ludzi!=tabela_celu):
             if(tabela_wektorow_bufor[lo][2]<0):
                 tabela_wektorow_bufor[lo][2] = tabela_wektorow_bufor[lo][2] * (-1)
         ilosc_okresow = np.min(tabela_wektorow_bufor)
-        tabela_ruchu[l][1] = tabela_wspolrzednych_ludzi[l][1] + tabela_wektorow[l][1]#/ilosc_okresow
-        tabela_ruchu[l][2] = tabela_wspolrzednych_ludzi[l][2] + tabela_wektorow[l][2]#/ilosc_okresow
-        for li in range(L):
-            for i in range(3):
-                tabela_ruchu[li][i] = int(tabela_ruchu[li][i])
+        tabela_ruchu[l][1] = tabela_wspolrzednych_ludzi[l][1] + tabela_wektorow[l][1]/ilosc_okresow
+        tabela_ruchu[l][2] = tabela_wspolrzednych_ludzi[l][2] + tabela_wektorow[l][2]/ilosc_okresow
+        float2int(tabela_ruchu)
         tabela_wspolrzednych_ludzi[l][1] = tabela_ruchu[l][1]
         tabela_wspolrzednych_ludzi[l][2] = tabela_ruchu[l][2]
 print("Tabela współrzędnych położenia ludzi:")
