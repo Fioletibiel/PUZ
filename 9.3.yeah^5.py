@@ -57,53 +57,32 @@ print("Tabela współrzędnych ludzi przed przetasowaniem:")
 print(np.matrix(tabela_wspolrzednych_ludzi))
 print("\n")
 
-#stworzenie tabeli rozmiesczenia ludzi wybranych
-tabela_wspolrzednych_ludzi_wybranych = [[0 for i in range(3)] for l in range(L)]
-for l in range(L):
-    tabela_wspolrzednych_ludzi_wybranych[l]=[tabela_wyboru[l][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2]]
+# #stworzenie tabeli rozmiesczenia ludzi wybranych
+# tabela_wspolrzednych_ludzi_wybranych = [[0 for i in range(3)] for l in range(L)]
+# for l in range(L):
+#     tabela_wspolrzednych_ludzi_wybranych[l]=[tabela_wyboru[l][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][1],tabela_wspolrzednych_ludzi[tabela_wyboru[l][1]-1][2]]
 
 # symulacja ruchu ludzi
 tabela_wektorow = [[0 for i in range(2)] for l in range(L)]
 k=0
-wszyscy_na_miejscu = [[False] for l in range(L)]
+wszyscy_na_miejscu = [False for l in range(L)]
 while(wszyscy_na_miejscu!=True):
     for i in range(L):
-        tabela_wektorow[i][0] = tabela_wspolrzednych_ludzi_wybranych[i][1] - 1 - (tabela_wspolrzednych_ludzi[i][1] - 1) # przesunięcie w osi X
-        tabela_wektorow[i][1] = tabela_wspolrzednych_ludzi_wybranych[i][2] - 1 - (tabela_wspolrzednych_ludzi[i][2] - 1) # przesunięcie w osi Y
+        tabela_wektorow[i][0] = tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1] - 1 - (tabela_wspolrzednych_ludzi[i][1] - 1) # przesunięcie w osi X - 1
+        tabela_wektorow[i][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2] - 1 - (tabela_wspolrzednych_ludzi[i][2] - 1) # przesunięcie w osi Y - 1
 
-        if(tabela_wspolrzednych_ludzi_wybranych[i][1] > tabela_wspolrzednych_ludzi[i][1]):
-            z1 = -1
-        elif(tabela_wspolrzednych_ludzi_wybranych[i][1] == tabela_wspolrzednych_ludzi[i][1]):
-            if(tabela_wspolrzednych_ludzi[i][1]+1>X):
-                z1 = -1
-            else:
-                z1 = 1
-        else:
-            z1 = 1
-        if(tabela_wspolrzednych_ludzi_wybranych[i][2] > tabela_wspolrzednych_ludzi[i][2]):
-            z2 = -1
-        elif(tabela_wspolrzednych_ludzi_wybranych[i][2] == tabela_wspolrzednych_ludzi[i][2]):
-            if(tabela_wspolrzednych_ludzi[i][1]+1>Y):
-                z2 = -1
-            else:
-                z2 = 1
-        else:
-            z2 = 1
-
-        # potuszanie się o jedno miejsce na turę
-        if (tabela_wspolrzednych_ludzi[i][1] != tabela_wspolrzednych_ludzi_wybranych[i][1]+z1):
-            wszyscy_na_miejscu[i] = False
-            if((tabela_wektorow[i][0] + z1)>=1):
-                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] - z1
-        else:
-            wszyscy_na_miejscu[i] = True
-
-        if (tabela_wspolrzednych_ludzi[i][2] != tabela_wspolrzednych_ludzi_wybranych[i][2]+z2):
-            wszyscy_na_miejscu[i] = False
-            if((tabela_wektorow[i][1] + z2)>=1):
-                tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2] - z2
-        else:
+        if(tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]-2 < tabela_wspolrzednych_ludzi[i][1] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]+2):
             wszyscy_na_miejscu[i]=True
+        else:
+            wszyscy_na_miejscu[i]=False
+            tabela_wspolrzednych_ludzi[i][1]=tabela_wspolrzednych_ludzi[i][1]+tabela_wektorow[i][0]/abs(tabela_wektorow[i][0]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi X)
+
+        if (tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-2 < tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+2):
+            wszyscy_na_miejscu[i]=True
+        else:
+            wszyscy_na_miejscu[i]=False
+            tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]+tabela_wektorow[i][1]/abs(tabela_wektorow[i][1]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi Y)
+
 
     # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
     pole = [['' for x in range(X)] for y in range(Y)]
