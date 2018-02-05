@@ -65,24 +65,42 @@ print("\n")
 # symulacja ruchu ludzi
 tabela_wektorow = [[0 for i in range(2)] for l in range(L)]
 k=0
-wszyscy_na_miejscu = [False for l in range(L)]
-while(wszyscy_na_miejscu!=True):
+wszyscy_na_miejscu = ['falsz' for l in range(L)]
+while(wszyscy_na_miejscu!='prawda'):
+    
+    print("Flaga "+str(1)+":")
+    print(np.matrix(wszyscy_na_miejscu))
+
     for i in range(L):
         tabela_wektorow[i][0] = tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1] - 1 - (tabela_wspolrzednych_ludzi[i][1] - 1) # przesunięcie w osi X - 1
         tabela_wektorow[i][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2] - 1 - (tabela_wspolrzednych_ludzi[i][2] - 1) # przesunięcie w osi Y - 1
 
+        print("Flaga " + str(2) + ":")
+        print(np.matrix(wszyscy_na_miejscu))
+
         if(tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]-2 < tabela_wspolrzednych_ludzi[i][1] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]+2):
-            wszyscy_na_miejscu[i]=True
+            wszyscy_na_miejscu[i]='prawda'
+
+            print("Flaga " + str(3) + ":")
+            print(np.matrix(wszyscy_na_miejscu))
+
         else:
-            wszyscy_na_miejscu[i]=False
+            wszyscy_na_miejscu[i]='falsz'
             tabela_wspolrzednych_ludzi[i][1]=tabela_wspolrzednych_ludzi[i][1]+tabela_wektorow[i][0]/abs(tabela_wektorow[i][0]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi X)
 
+        print("Flaga " + str(4) + ":")
+        print(np.matrix(wszyscy_na_miejscu))
+
         if (tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-2 < tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+2):
-            wszyscy_na_miejscu[i]=True
+            wszyscy_na_miejscu[i]='prawda'
         else:
-            wszyscy_na_miejscu[i]=False
+            wszyscy_na_miejscu[i]='falsz'
             tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]+tabela_wektorow[i][1]/abs(tabela_wektorow[i][1]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi Y)
 
+        print("Dla człowieka "+str(i+1)+": "+wszyscy_na_miejscu[i])
+
+    print("Flaga "+str(5)+":")
+    print(np.matrix(wszyscy_na_miejscu))
 
     # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
     pole = [['' for x in range(X)] for y in range(Y)]
@@ -92,15 +110,16 @@ while(wszyscy_na_miejscu!=True):
                 if (tabela_wspolrzednych_ludzi[lp][1] - 1 == x):
                     if (tabela_wspolrzednych_ludzi[lp][2] - 1 == y):
                         pole[y][x] = '©'
-    # odswiez_ekran()
-    # poczekaj(2)
+
+    odswiez_ekran()
+    poczekaj(5)
     k += 1
-    # print("Pole po przetasowaniu nr.:" + str(k))
-    # print(np.matrix(pole))
-    # print("\n")
-    if (k == 10000):
-        print("Ta operacja trwa zbyt długo i została przerwana.")
-        break
+    print("Pole po przetasowaniu nr.:" + str(k))
+    print(np.matrix(pole))
+    print("\n")
+ #   if (k == 10000):
+ #       print("Ta operacja trwa zbyt długo i została przerwana.")
+ #       break
 
 
 print("Pole po przetasowaniu:")

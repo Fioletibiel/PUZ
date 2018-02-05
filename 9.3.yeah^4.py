@@ -90,7 +90,7 @@ while(wszyscy_na_miejscu!=True):
         else:
             z2 = 1
 
-        # potuszanie się o jedno miejsce na turę
+        # poruszanie się o jedno miejsce na turę
         if (tabela_wspolrzednych_ludzi[i][1] != tabela_wspolrzednych_ludzi_wybranych[i][1]+z1):
             wszyscy_na_miejscu[i] = False
             if((tabela_wektorow[i][0] + z1)>=1):
