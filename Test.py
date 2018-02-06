@@ -5,3 +5,10 @@ for x in range(100):
     for y in range(100):
         pole[x][y] = np.random.randint(0, 2)
 print(np.matrix(pole))
+
+
+
+
+L=10
+for l in range(L):
+    print(l)

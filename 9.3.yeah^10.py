@@ -27,12 +27,48 @@ while(L<2):
     L = int(L)
 print("\n")
 
+# # wybór i przypisanie osób
+# tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
+# for l in range(L):
+#     tabela_wyboru[l] = [l+1,np.random.randint(0,L)+1]
+#     while(tabela_wyboru[l][1]==tabela_wyboru[l][0]):
+#         tabela_wyboru[l] = [l+1, np.random.randint(0,L)+1]
+
+# # wybór i przypisanie osób
+# tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
+# bul='prawda'
+# for l in range(L):
+#     tabela_wyboru[l] = [l + 1, np.random.randint(0, L) + 1]
+#     for m in range(l-1):
+#         if(tabela_wyboru[l][1]==tabela_wyboru[m][1]):
+#             bul = 'falsz'
+#     while(tabela_wyboru[l][1]==tabela_wyboru[l][0] or bul=='falsz'):
+#         tabela_wyboru[l] = [l+1, np.random.randint(0,L)+1]
+#         bul='prawda'
+#         for m in range(l-1):
+#             if (tabela_wyboru[l][1] == tabela_wyboru[m][1]):
+#                 bul = 'falsz'
+
 # wybór i przypisanie osób
 tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
+bul='prawda'
 for l in range(L):
-    tabela_wyboru[l] = [l+1,np.random.randint(0,L)+1]
-    while(tabela_wyboru[l][1]==tabela_wyboru[l][0]):
+    tabela_wyboru[l] = [l + 1, np.random.randint(0, L) + 1]
+    for m in range(l-1):
+        if(tabela_wyboru[l][1]==tabela_wyboru[m][1]):
+            bul = 'falsz'
+    while(tabela_wyboru[l][1]==tabela_wyboru[l][0] or bul=='falsz'):
         tabela_wyboru[l] = [l+1, np.random.randint(0,L)+1]
+        bul='prawda'
+        for m in range(l-1):
+            if (tabela_wyboru[l][1] == tabela_wyboru[m][1]):
+                bul = 'falsz'
+
+
+
+
+
+
 print("Tabela wyboru:")
 print(np.matrix(tabela_wyboru))
 print("\n")
@@ -163,8 +199,8 @@ while(wszyscy_na_miejscu_lol!='prawda'):
                     if (tabela_wspolrzednych_ludzi[lp][2] - 1 == y):
                         pole[y][x] = str(lp+1)
 
-    # odswiez_ekran()
-    # poczekaj(3)
+    odswiez_ekran()
+    poczekaj(30)
     k += 1
     print("Pole po przetasowaniu nr.:" + str(k))
     print(np.matrix(pole))
