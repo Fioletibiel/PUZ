@@ -48,6 +48,11 @@ print("Tabela współrzędnych ludzi przed przetasowaniem:")
 print(np.matrix(tabela_wspolrzednych_ludzi))
 print("\n")
 
+# def losowanie():
+#     los = np.random.randint(0, 2)
+#     if(los==0):
+#         los=-1
+#     return los
 
 # symulacja ruchu ludzi
 tabela_wektorow = [[0 for i in range(2)] for l in range(L)]
@@ -63,12 +68,28 @@ while(wszyscy_na_miejscu_lol!='prawda'):
         if(tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]-2 < tabela_wspolrzednych_ludzi[i][1] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]+2):
             if(tabela_wspolrzednych_ludzi[i][1] != tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]):
                 wszyscy_na_miejscu[i]='prawda'
+                for otaa in range(L):
+                    if(tabela_wspolrzednych_ludzi[i][1] == tabela_wspolrzednych_ludzi[otaa][1]):
+                        wszyscy_na_miejscu[i]='falsz'
+                        while(tabela_wspolrzednych_ludzi[i][1] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]-1 or tabela_wspolrzednych_ludzi[i][1] > tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]+1):
+                            los = np.random.randint(0, 2)
+                            if (los == 0):
+                                los = -1
+                            while(tabela_wspolrzednych_ludzi[i][1]+los<1 or tabela_wspolrzednych_ludzi[i][1]+los>X):
+                                los = np.random.randint(0, 2)
+                                if (los == 0):
+                                    los = -1
+                            tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1]+los
             else:
                 wszyscy_na_miejscu[i]='falsz'
-                if(tabela_wspolrzednych_ludzi[i][1]-1>0):
-                    tabela_wspolrzednych_ludzi[i][1]=tabela_wspolrzednych_ludzi[i][1]-1
-                else:
-                    tabela_wspolrzednych_ludzi[i][1]=tabela_wspolrzednych_ludzi[i][1]+1
+                los = np.random.randint(0, 2)
+                if (los == 0):
+                    los = -1
+                while (tabela_wspolrzednych_ludzi[i][1] + los < 1 or tabela_wspolrzednych_ludzi[i][1] + los > X):
+                    los = np.random.randint(0, 2)
+                    if (los == 0):
+                        los = -1
+                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + los
         else:
             wszyscy_na_miejscu[i]='falsz'
             tabela_wspolrzednych_ludzi[i][1]=tabela_wspolrzednych_ludzi[i][1]+tabela_wektorow[i][0]/abs(tabela_wektorow[i][0]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi X)
@@ -76,12 +97,28 @@ while(wszyscy_na_miejscu_lol!='prawda'):
         if (tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-2 < tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+2):
             if (tabela_wspolrzednych_ludzi[i][2] != tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]):
                 wszyscy_na_miejscu[i] = 'prawda'
+                for otaa in range(L):
+                    if(tabela_wspolrzednych_ludzi[i][2] == tabela_wspolrzednych_ludzi[otaa][2]):
+                        wszyscy_na_miejscu[i]='falsz'
+                        while(tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-1 or tabela_wspolrzednych_ludzi[i][2] > tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+1):
+                            los = np.random.randint(0, 2)
+                            if (los == 0):
+                                los = -1
+                            while(tabela_wspolrzednych_ludzi[i][2]+los<1 or tabela_wspolrzednych_ludzi[i][2]+los>Y):
+                                los = np.random.randint(0, 2)
+                                if (los == 0):
+                                    los = -1
+                            tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2]+los
             else:
                 wszyscy_na_miejscu[i]='falsz'
-                if(tabela_wspolrzednych_ludzi[i][2]-1>0):
-                    tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]-1
-                else:
-                    tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]+1
+                los = np.random.randint(0, 2)
+                if (los == 0):
+                    los = -1
+                while (tabela_wspolrzednych_ludzi[i][1] + los < 1 or tabela_wspolrzednych_ludzi[i][1] + los > X):
+                    los = np.random.randint(0, 2)
+                    if (los == 0):
+                        los = -1
+                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + los
         else:
             wszyscy_na_miejscu[i]='falsz'
             tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]+tabela_wektorow[i][1]/abs(tabela_wektorow[i][1]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi Y)
