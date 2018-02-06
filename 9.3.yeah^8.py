@@ -1,12 +1,30 @@
 import numpy as np
+import subprocess
+import os
+def odswiez_ekran():
+    subprocess.call("cls", shell=True)
+def poczekaj(czas):
+    cz=0
+    while(cz<czas):
+        os.system('cls')
+        cz+=1
 
 # tworzenie pola o zadanych wymiarach
 X = input("Proszę podaj rozmiar X pola: ")
 X = int(X)
+while(X<2):
+    X = input("Rozmiar X pola musi być większy od 1: ")
+    X = int(X)
 Y = input("oraz Y: ")
 Y = int(Y)
+while(Y<2):
+    Y = input("Rozmiar Y pola musi być większy od 1: ")
+    Y = int(Y)
 L = input("A teraz podaj ilość ludzi: ")
 L = int(L)
+while(L<2):
+    L = input("Ilość ludzi musi być większa od 1: ")
+    L = int(L)
 print("\n")
 
 # wybór i przypisanie osób
@@ -66,63 +84,68 @@ while(wszyscy_na_miejscu_lol!='prawda'):
         tabela_wektorow[i][1] = tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2] - 1 - (tabela_wspolrzednych_ludzi[i][2] - 1) # przesunięcie w osi Y - 1
 
         if(tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]-2 < tabela_wspolrzednych_ludzi[i][1] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]+2):
-            if(tabela_wspolrzednych_ludzi[i][1] != tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]):
-                wszyscy_na_miejscu[i]='prawda'
-                for otaa in range(L):
+            wszyscy_na_miejscu[i]='prawda'
+            for otaa in range(L):
+                if(otaa!=i):
                     if(tabela_wspolrzednych_ludzi[i][1] == tabela_wspolrzednych_ludzi[otaa][1]):
                         wszyscy_na_miejscu[i]='falsz'
-                        while(tabela_wspolrzednych_ludzi[i][1] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]-1 or tabela_wspolrzednych_ludzi[i][1] > tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][1]+1):
-                            los = np.random.randint(0, 2)
-                            if (los == 0):
-                                los = -1
-                            while(tabela_wspolrzednych_ludzi[i][1]+los<1 or tabela_wspolrzednych_ludzi[i][1]+los>X):
-                                los = np.random.randint(0, 2)
-                                if (los == 0):
-                                    los = -1
-                            tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1]+los
-            else:
-                wszyscy_na_miejscu[i]='falsz'
+            if(wszyscy_na_miejscu[i]=='falsz'):
                 los = np.random.randint(0, 2)
                 if (los == 0):
                     los = -1
-                while (tabela_wspolrzednych_ludzi[i][1] + los < 1 or tabela_wspolrzednych_ludzi[i][1] + los > X):
+                while(tabela_wspolrzednych_ludzi[i][1]+los<1 or tabela_wspolrzednych_ludzi[i][1]+los>X):
                     los = np.random.randint(0, 2)
                     if (los == 0):
                         los = -1
-                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + los
+                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1]+los
         else:
             wszyscy_na_miejscu[i]='falsz'
             tabela_wspolrzednych_ludzi[i][1]=tabela_wspolrzednych_ludzi[i][1]+tabela_wektorow[i][0]/abs(tabela_wektorow[i][0]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi X)
-
-        if (tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-2 < tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+2):
-            if (tabela_wspolrzednych_ludzi[i][2] != tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]):
-                wszyscy_na_miejscu[i] = 'prawda'
-                for otaa in range(L):
-                    if(tabela_wspolrzednych_ludzi[i][2] == tabela_wspolrzednych_ludzi[otaa][2]):
+            for otaa in range(L):
+                if(otaa!=i):
+                    if(tabela_wspolrzednych_ludzi[i][1] == tabela_wspolrzednych_ludzi[otaa][1]):
                         wszyscy_na_miejscu[i]='falsz'
-                        while(tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-1 or tabela_wspolrzednych_ludzi[i][2] > tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+1):
-                            los = np.random.randint(0, 2)
-                            if (los == 0):
-                                los = -1
-                            while(tabela_wspolrzednych_ludzi[i][2]+los<1 or tabela_wspolrzednych_ludzi[i][2]+los>Y):
-                                los = np.random.randint(0, 2)
-                                if (los == 0):
-                                    los = -1
-                            tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2]+los
-            else:
-                wszyscy_na_miejscu[i]='falsz'
+            if(wszyscy_na_miejscu[i]=='falsz'):
                 los = np.random.randint(0, 2)
                 if (los == 0):
                     los = -1
-                while (tabela_wspolrzednych_ludzi[i][1] + los < 1 or tabela_wspolrzednych_ludzi[i][1] + los > X):
+                while(tabela_wspolrzednych_ludzi[i][1]+los<1 or tabela_wspolrzednych_ludzi[i][1]+los>X):
                     los = np.random.randint(0, 2)
                     if (los == 0):
                         los = -1
-                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1] + los
+                tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1]+los
+
+        if (tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-2 < tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+2):
+            wszyscy_na_miejscu[i] = 'prawda'
+            for otaa in range(L):
+                if(otaa!=i):
+                    if(tabela_wspolrzednych_ludzi[i][2] == tabela_wspolrzednych_ludzi[otaa][2]):
+                        wszyscy_na_miejscu[i]='falsz'
+            if(wszyscy_na_miejscu[i]=='falsz'):
+                los = np.random.randint(0, 2)
+                if (los == 0):
+                    los = -1
+                while(tabela_wspolrzednych_ludzi[i][2]+los<1 or tabela_wspolrzednych_ludzi[i][2]+los>Y):
+                    los = np.random.randint(0, 2)
+                    if (los == 0):
+                        los = -1
+                tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2]+los
         else:
             wszyscy_na_miejscu[i]='falsz'
             tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]+tabela_wektorow[i][1]/abs(tabela_wektorow[i][1]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi Y)
-
+            for otaa in range(L):
+                if(otaa!=i):
+                    if(tabela_wspolrzednych_ludzi[i][2] == tabela_wspolrzednych_ludzi[otaa][2]):
+                        wszyscy_na_miejscu[i]='falsz'
+            if(wszyscy_na_miejscu[i]=='falsz'):
+                los = np.random.randint(0, 2)
+                if (los == 0):
+                    los = -1
+                while(tabela_wspolrzednych_ludzi[i][2]+los<1 or tabela_wspolrzednych_ludzi[i][2]+los>Y):
+                    los = np.random.randint(0, 2)
+                    if (los == 0):
+                        los = -1
+                tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2]+los
 
 
 
@@ -141,10 +164,12 @@ while(wszyscy_na_miejscu_lol!='prawda'):
                     if (tabela_wspolrzednych_ludzi[lp][2] - 1 == y):
                         pole[y][x] = '©'
 
+    # odswiez_ekran()
+    # poczekaj(10)
     k += 1
-    print("Pole po przetasowaniu nr.:" + str(k))
-    print(np.matrix(pole))
-    print("\n")
+    # print("Pole po przetasowaniu nr.:" + str(k))
+    # print(np.matrix(pole))
+    # print("\n")
 
 
 print("Pole po ostatecznym przetasowaniu:")

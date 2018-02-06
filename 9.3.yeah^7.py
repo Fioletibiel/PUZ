@@ -79,9 +79,9 @@ while(wszyscy_na_miejscu_lol!='prawda'):
             else:
                 wszyscy_na_miejscu[i]='falsz'
                 if(tabela_wspolrzednych_ludzi[i][2]-1>0):
-                    tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]-1
+                    tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][1]-1
                 else:
-                    tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]+1
+                    tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][1]+1
         else:
             wszyscy_na_miejscu[i]='falsz'
             tabela_wspolrzednych_ludzi[i][2]=tabela_wspolrzednych_ludzi[i][2]+tabela_wektorow[i][1]/abs(tabela_wektorow[i][1]) # poruszanie się o 1 pole w kierunku wybranej osoby (w osi Y)
