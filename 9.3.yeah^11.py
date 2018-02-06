@@ -27,50 +27,6 @@ while(L<2):
     L = int(L)
 print("\n")
 
-# # wybór i przypisanie osób
-# tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
-# for l in range(L):
-#     tabela_wyboru[l] = [l+1,np.random.randint(0,L)+1]
-#     while(tabela_wyboru[l][1]==tabela_wyboru[l][0]):
-#         tabela_wyboru[l] = [l+1, np.random.randint(0,L)+1]
-
-# # wybór i przypisanie osób
-# tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
-# bul='prawda'
-# for l in range(L):
-#     tabela_wyboru[l] = [l + 1, np.random.randint(0, L) + 1]
-#     for m in range(l-1):
-#         if(tabela_wyboru[l][1]==tabela_wyboru[m][1]):
-#             bul = 'falsz'
-#     while(tabela_wyboru[l][1]==tabela_wyboru[l][0] or bul=='falsz'):
-#         tabela_wyboru[l] = [l+1, np.random.randint(0,L)+1]
-#         bul='prawda'
-#         for m in range(l-1):
-#             if (tabela_wyboru[l][1] == tabela_wyboru[m][1]):
-#                 bul = 'falsz'
-
-# # wybór i przypisanie osób
-# tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
-# bul='prawda'
-# for l in range(L):
-#     print(l+1)
-#     tabela_wyboru[l] = [l + 1, np.random.randint(0, L) + 1]
-#     print(tabela_wyboru[l])
-#     for m in range(abs(l-1)):
-#         if(tabela_wyboru[l][1]==tabela_wyboru[m][1]):
-#             bul = 'falsz'
-#     while (tabela_wyboru[l][1] == tabela_wyboru[l][0]):
-#         tabela_wyboru[l] = [l + 1, np.random.randint(0, L) + 1]
-#     if(l>0):
-#         while(tabela_wyboru[l][1]==tabela_wyboru[l][0] or bul=='falsz'):
-#             tabela_wyboru[l] = [l+1, np.random.randint(0,L)+1]
-#             print(tabela_wyboru[l])
-#             bul='prawda'
-#             for m in range(abs(l-1)):
-#                 if (tabela_wyboru[l][1] == tabela_wyboru[m][1]):
-#                     bul = 'falsz'
-
-
 # wybór i przypisanie osób
 tabela_wyboru = [[0 for i in range(2)] for l in range(L)]
 bul='falsz'
@@ -119,8 +75,6 @@ while(bul=='falsz'):
             if(tabela_wyboru[l][1]==tabela_wyboru[l][0]):
                 bul='falsz'
 
-
-
 print("Tabela wyboru:")
 print(np.matrix(tabela_wyboru))
 print("\n")
@@ -153,12 +107,6 @@ for y in range(Y):
 print("Tabela współrzędnych ludzi przed przetasowaniem:")
 print(np.matrix(tabela_wspolrzednych_ludzi))
 print("\n")
-
-# def losowanie():
-#     los = np.random.randint(0, 2)
-#     if(los==0):
-#         los=-1
-#     return los
 
 # symulacja ruchu ludzi
 tabela_wektorow = [[0 for i in range(2)] for l in range(L)]
@@ -257,7 +205,6 @@ while(wszyscy_na_miejscu_lol!='prawda'):
     # print("Pole po przetasowaniu nr.:" + str(k))
     # print(np.matrix(pole))
     # print("\n")
-
 
 print("Pole po ostatecznym przetasowaniu:")
 print(np.matrix(pole))
