@@ -104,8 +104,8 @@ while(wszyscy_na_miejscu_lol!='prawda'):
             for otaa in range(L):
                 if(otaa!=i):
                     if(tabela_wspolrzednych_ludzi[i][1] == tabela_wspolrzednych_ludzi[otaa][1]):
-                        wszyscy_na_miejscu[i]='falsz'
-            if(wszyscy_na_miejscu[i]=='falsz'):
+                        wszyscy_na_miejscu[i]='else_falsz'
+            if(wszyscy_na_miejscu[i]=='else_falsz'):
                 los = np.random.randint(0, 2)
                 if (los == 0):
                     los = -1
@@ -114,6 +114,7 @@ while(wszyscy_na_miejscu_lol!='prawda'):
                     if (los == 0):
                         los = -1
                 tabela_wspolrzednych_ludzi[i][1] = tabela_wspolrzednych_ludzi[i][1]+los
+                wszyscy_na_miejscu[i]='falsz'
 
         if (tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]-2 < tabela_wspolrzednych_ludzi[i][2] < tabela_wspolrzednych_ludzi[tabela_wyboru[i][1] - 1][2]+2):
             wszyscy_na_miejscu[i] = 'prawda'
@@ -136,8 +137,8 @@ while(wszyscy_na_miejscu_lol!='prawda'):
             for otaa in range(L):
                 if(otaa!=i):
                     if(tabela_wspolrzednych_ludzi[i][2] == tabela_wspolrzednych_ludzi[otaa][2]):
-                        wszyscy_na_miejscu[i]='falsz'
-            if(wszyscy_na_miejscu[i]=='falsz'):
+                        wszyscy_na_miejscu[i]='else_falsz'
+            if(wszyscy_na_miejscu[i]=='else_falsz'):
                 los = np.random.randint(0, 2)
                 if (los == 0):
                     los = -1
@@ -146,13 +147,11 @@ while(wszyscy_na_miejscu_lol!='prawda'):
                     if (los == 0):
                         los = -1
                 tabela_wspolrzednych_ludzi[i][2] = tabela_wspolrzednych_ludzi[i][2]+los
+                wszyscy_na_miejscu[i] = 'falsz'
 
-
-
+    wszyscy_na_miejscu_lol = 'prawda'
     for lol in range(L):
-        if (wszyscy_na_miejscu[lol]=='prawda'):
-            wszyscy_na_miejscu_lol='prawda'
-        else:
+        if (wszyscy_na_miejscu[lol]=='falsz'):
             wszyscy_na_miejscu_lol='falsz'
 
     # odtworzenie tabeli rozmieszczenia ludzi / stworzenie końcowej tabeli rozmieszczenia ludzi
@@ -162,14 +161,14 @@ while(wszyscy_na_miejscu_lol!='prawda'):
             for lp in range(L):
                 if (tabela_wspolrzednych_ludzi[lp][1] - 1 == x):
                     if (tabela_wspolrzednych_ludzi[lp][2] - 1 == y):
-                        pole[y][x] = '©'
+                        pole[y][x] = str(lp+1)
 
     # odswiez_ekran()
-    # poczekaj(10)
+    # poczekaj(3)
     k += 1
-    # print("Pole po przetasowaniu nr.:" + str(k))
-    # print(np.matrix(pole))
-    # print("\n")
+    print("Pole po przetasowaniu nr.:" + str(k))
+    print(np.matrix(pole))
+    print("\n")
 
 
 print("Pole po ostatecznym przetasowaniu:")
